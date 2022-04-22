@@ -1,0 +1,22 @@
+<mat-form-field appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput required [(ngModel)]="title">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Author</mat-label>
+    <input matInput required [(ngModel)]="author">
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Genre</mat-label>
+    <mat-select [(ngModel)]="genre">
+      <mat-option value="fiction">Fiction</mat-option>
+      <mat-option value="nonfiction">Nonfiction</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Book Review</mat-label>
+    <textarea matInput [(ngModel)]="review"></textarea>
+</mat-form-field>
+<button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+
+
