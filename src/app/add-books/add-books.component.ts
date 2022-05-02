@@ -30,9 +30,11 @@ export class AddBooksComponent implements OnInit {
     newBook.genre = this.genre;
     newBook.review = this.review;
 
-    console.log('new book is: ' + newBook);
+    console.log('new book is: ' + JSON.stringify(newBook));
 
-    this.bookService.addBook(newBook);
+    this.bookService
+  .addBook(newBook)
+  .subscribe(book => this.bookService.bookList.push(book));
 
   }
 
