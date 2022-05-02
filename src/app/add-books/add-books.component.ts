@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../models/book.model';
 import { BookService } from '../services/book.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-books',
@@ -14,7 +15,7 @@ export class AddBooksComponent implements OnInit {
   public genre: string = '';
   public review: string = '';
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService, private snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -32,10 +33,15 @@ export class AddBooksComponent implements OnInit {
 
     console.log('new book is: ' + JSON.stringify(newBook));
 
-    this.bookService
-  .addBook(newBook)
-  .subscribe(book => this.bookService.bookList.push(book));
+    this.bookService.addBook(newBook).subscribe(book => 
+      this.bookService.bookList.push(book));
 
+    this.openSnackBar(newBook.title + " was added to your library!");
+
+  }
+
+  private openSnackBar(message: string) {
+    this.snackBar.open(message);
   }
 
   
