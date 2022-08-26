@@ -1,3 +1,5 @@
+import { VolumeInfo } from "./volume-info.model";
+
 export interface BookItemGoogleResponse {
 
     accessInfo: any[];
@@ -5,6 +7,7 @@ export interface BookItemGoogleResponse {
     id: string;
     kind: string;
     saleInfo: any[];
-    searchInfo: any[];    
+    searchInfo: any[];
+    volumeInfo: VolumeInfo;    
 
 }
