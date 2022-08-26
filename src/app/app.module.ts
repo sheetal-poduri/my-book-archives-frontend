@@ -10,11 +10,14 @@ import { MatSelectModule} from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { AddBooksComponent } from './add-books/add-books.component';
 import { ViewBooksComponent } from './view-books/view-books.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { AddBooksGoogleComponent } from './add-books-google/add-books-google.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
 
 
 
@@ -22,7 +25,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
   declarations: [
     AppComponent,
     AddBooksComponent,
-    ViewBooksComponent
+    ViewBooksComponent,
+    AddBooksGoogleComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
     MatButtonModule,
     MatTableModule,
     HttpClientModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule
   ],
   providers: [],
   bootstrap: [AppComponent]
