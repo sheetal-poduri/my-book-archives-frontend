@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, startWith, map, filter, debounceTime, distinctUntilChanged, finalize, switchMap, tap } from 'rxjs';
+import { Observable, startWith, map, filter, debounceTime, distinctUntilChanged, finalize, switchMap, tap, catchError, of } from 'rxjs';
 import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
 import { BookService } from '../services/book.service';
 
@@ -83,17 +83,27 @@ export class AddBooksGoogleComponent implements OnInit {
 
   filter(val: string): Observable<any[]> {
     const filterValue = val.toLowerCase();
-
+    //this.filteredOptions = [];
     // call the service which makes the http-request
     return this.bookService.getBooksByTitleGoogleAPI(filterValue)
      .pipe(
        map(response => response.items.filter(option => {
       
          return option.volumeInfo.title.toLowerCase().indexOf(val.toLowerCase()) === 0
-       }))
+       })),
+       catchError(err => of('error', err))
      )
    }  
 
+
+
+   updateMySelection(event: Event) {
+    console.log(event);
+   }
+
+   getOptionText(option: BookItemGoogleResponse) : string {
+    return option.volumeInfo.title;
+   }
 
 
   private _filter(value: string): any {
