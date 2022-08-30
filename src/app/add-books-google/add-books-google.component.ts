@@ -20,6 +20,7 @@ export class AddBooksGoogleComponent implements OnInit {
   minLengthTerm = 3;
   errorMsg: string;
   submitClicked = false;
+  searchedBook: BookItemGoogleResponse;
 
 
   constructor(private bookService: BookService) { }
@@ -53,24 +54,27 @@ export class AddBooksGoogleComponent implements OnInit {
    }  
 
    viewBook(book) {
-    const searchedBook = new BookItemGoogleResponse;
+    const newBook = new BookItemGoogleResponse;
     //console.log(book);
 
-    searchedBook.accessInfo = book.accessInfo;
-    searchedBook.etag = book.etag;
-    searchedBook.id = book.id;
-    searchedBook.kind = book.kind;
-    searchedBook.saleInfo = book.saleInfo;
-    searchedBook.searchInfo = book.searchInfo;
-    searchedBook.volumeInfo.title = book.volumeInfo.title;
-    searchedBook.volumeInfo.publisher = book.volumeInfo.publisher;
-    searchedBook.volumeInfo.language = book.volumeInfo.language;
-    searchedBook.volumeInfo.imageLinks = book.volumeInfo.imageLinks;
-    searchedBook.volumeInfo.description = book.volumeInfo.description;
-    searchedBook.volumeInfo.categories = book.volumeInfo.categories;
-    searchedBook.volumeInfo.authors = book.volumeInfo.authors;
+    newBook.accessInfo = book.accessInfo;
+    newBook.etag = book.etag;
+    newBook.id = book.id;
+    newBook.kind = book.kind;
+    newBook.saleInfo = book.saleInfo;
+    newBook.searchInfo = book.searchInfo;
+    newBook.volumeInfo.title = book.volumeInfo.title;
+    newBook.volumeInfo.publisher = book.volumeInfo.publisher;
+    newBook.volumeInfo.language = book.volumeInfo.language;
+    //newBook.volumeInfo.imageLinks = book.volumeInfo.imageLinks;
+    newBook.volumeInfo.description = book.volumeInfo.description;
+    newBook.volumeInfo.categories = book.volumeInfo.categories;
+    newBook.volumeInfo.authors = book.volumeInfo.authors;
+    newBook.volumeInfo.imageLinks.thumbnail = book.volumeInfo.imageLinks.thumbnail;
+    newBook.volumeInfo.imageLinks.smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
 
-    console.log(searchedBook);
+    console.log(newBook);
+    this.searchedBook = newBook;
     this.submitClicked = true;
 
    }

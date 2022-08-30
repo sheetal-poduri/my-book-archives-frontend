@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
 
 @Component({
   selector: 'app-book-card',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookCardComponent implements OnInit {
 
+  @Input() book: BookItemGoogleResponse;
+  //title: string = '';
+
   constructor() { }
 
   ngOnInit(): void {
+
+    //this.title = this.book.
   }
 
 }
