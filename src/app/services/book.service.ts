@@ -3,6 +3,7 @@ import { Book } from '../models/book.model';
 import { HttpClient, JsonpClientBackend} from '@angular/common/http';
 import { catchError, Observable } from 'rxjs';
 import { BookGoogleResponse } from '../models/book-google-response.model';
+import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
 
 @Injectable({
   providedIn: 'root'
@@ -27,6 +28,10 @@ export class BookService {
     console.log("inside book service method book is " + JSON.stringify(book));
     return this.http.post("http://localhost:8081/books/save", book);
   }  
+
+  public addGoogleApiBook(book: BookItemGoogleResponse) : Observable<any> {
+    return this.http.post("http://localhost:8081/books/saveGoogleApiBook", book);
+  }
 
   public getBooksByTitleGoogleAPI(title: string): Observable<any> {
     const googleUrl = 'https://www.googleapis.com/books/v1/volumes?q=intitle:';

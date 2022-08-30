@@ -15,9 +15,9 @@
              matInput
              [formControl]="myControl"
              [matAutocomplete]="auto">
-      <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="getOptionText" (optionSelected)='viewBook($event.option.value)'>
         <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-          <span>{{option.volumeInfo.title}} - {{option.volumeInfo.authors[0]}}</span>
+          <span>{{option.volumeInfo.title}} - {{option.volumeInfo.authors}}</span>
 
         </mat-option>
       </mat-autocomplete>

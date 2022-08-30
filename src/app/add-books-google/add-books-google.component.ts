@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Observable, startWith, map, filter, debounceTime, distinctUntilChanged, finalize, switchMap, tap, catchError, of } from 'rxjs';
 import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
+import { Book } from '../models/book.model';
 import { BookService } from '../services/book.service';
 
 @Component({
@@ -19,14 +20,10 @@ export class AddBooksGoogleComponent implements OnInit {
   minLengthTerm = 3;
   errorMsg: string;
 
+
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
-    // this.filteredOptions = this.myControl.valueChanges.pipe(
-    //   startWith(''),
-    //   map(value => this._filter(value || '')),
-    // );
-
 
     this.filteredOptions = this.myControl.valueChanges
     .pipe(
@@ -37,47 +34,6 @@ export class AddBooksGoogleComponent implements OnInit {
         return this.filter(val || '')
       })       
     );
-
-    // this.myControl.valueChanges
-    //   .pipe(
-    //     filter(res => {
-    //       return res !== null && res.length >= this.minLengthTerm
-    //     }),
-    //     distinctUntilChanged(),
-    //     debounceTime(1000),
-    //     tap(() => {
-    //       this.errorMsg = "";
-    //       this.filteredOptions = [];
-    //       this.isLoading = true;
-    //     }),
-    //     switchMap(value => this.bookService.getBooksByTitleGoogleAPI(value)
-    //       .pipe(
-    //         finalize(() => {
-    //           this.isLoading = false
-    //         }),
-    //       )
-    //     )
-    //   )
-    //   .subscribe((data: any) => {
-    //     if (data['items'] == undefined) {
-    //       this.errorMsg = data['Error'];
-    //       this.filteredOptions = [];
-    //     } else {
-    //       this.errorMsg = "";
-    //       //this.filteredOptions = data['items'];
-
-    //       this.options = [];
-    //       const searchList: BookItemGoogleResponse[] = data.items;
-    //       //console.log(searchList)
-    
-    
-    //       searchList.forEach(item => {
-    //         this.options.push(item.volumeInfo.title)
-    //       });
-    //     }
-    //     this.filteredOptions = this.options;
-    //     console.log(this.filteredOptions);
-    //   });
   }
 
 
@@ -95,51 +51,32 @@ export class AddBooksGoogleComponent implements OnInit {
      )
    }  
 
+   viewBook(book) {
+    const searchedBook = new BookItemGoogleResponse;
+    //console.log(book);
 
+    searchedBook.accessInfo = book.accessInfo;
+    searchedBook.etag = book.etag;
+    searchedBook.id = book.id;
+    searchedBook.kind = book.kind;
+    searchedBook.saleInfo = book.saleInfo;
+    searchedBook.searchInfo = book.searchInfo;
+    searchedBook.volumeInfo.title = book.volumeInfo.title;
+    searchedBook.volumeInfo.publisher = book.volumeInfo.publisher;
+    searchedBook.volumeInfo.language = book.volumeInfo.language;
+    searchedBook.volumeInfo.imageLinks = book.volumeInfo.imageLinks;
+    searchedBook.volumeInfo.description = book.volumeInfo.description;
+    searchedBook.volumeInfo.categories = book.volumeInfo.categories;
+    searchedBook.volumeInfo.authors = book.volumeInfo.authors;
 
-   updateMySelection(event: Event) {
-    console.log(event);
+    console.log(searchedBook);
+
    }
+
 
    getOptionText(option: BookItemGoogleResponse) : string {
     return option.volumeInfo.title;
    }
-
-
-  private _filter(value: string): any {
-    const filterValue = value.toLowerCase();
-
-
-
-    // return this.bookService.getBooksByTitleGoogleAPI(filterValue)
-    // .pipe(
-    //   map(response => response.items.filter(option => { 
-    //     return option.volumeInfo.title.toLowerCase().indexOf(filterValue.toLowerCase()) === 0
-    //   }))
-    // )
-
-    if (filterValue.length > 1) {
-
-      this.bookService.getBooksByTitleGoogleAPI(filterValue).subscribe(data => {
-
-        this.options = [];
-        const searchList: BookItemGoogleResponse[] = data.items;
-        //console.log(searchList)
-  
-  
-        searchList.forEach(item => {
-          this.options.push(item.volumeInfo.title)
-        });
-  
-  
-        //this.options = data.items;
-        console.log(this.options)
-        return this.options.filter(option => option.toLowerCase().includes(filterValue));
-        
-      });
-    }
-  
-  }
 
 }
 

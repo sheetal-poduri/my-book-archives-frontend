@@ -1,12 +1,12 @@
-export interface VolumeInfo {
+export class VolumeInfo {
 
-    authors: string[];
-    categories: string[];
-    description: string;
-    imageLinks: any[];
-    language: string;
-    publisher: string;
-    title: string;
+    authors: string[] = [];
+    categories: string[] = [];
+    description: string = "";
+    imageLinks: any[] = [];
+    language: string = "";
+    publisher: string = "";
+    title: string = "";
 
 }
 
