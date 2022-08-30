@@ -38,16 +38,16 @@ export class AddBooksGoogleComponent implements OnInit {
 
 
   filter(val: string): Observable<any[]> {
-    const filterValue = val.toLowerCase();
+    //const filterValue = val.toLowerCase();
     //this.filteredOptions = [];
     // call the service which makes the http-request
-    return this.bookService.getBooksByTitleGoogleAPI(filterValue)
+    return this.bookService.getBooksByTitleGoogleAPI(val)
      .pipe(
        map(response => response.items.filter(option => {
       
-         return option.volumeInfo.title.toLowerCase().indexOf(val.toLowerCase()) === 0
-       })),
-       catchError(err => of('error', err))
+         return option.volumeInfo.title.toLowerCase().indexOf(val.toString().toLowerCase()) === 0
+       }))
+       //,catchError(err => of('error', err))
      )
    }  
 
