@@ -19,6 +19,7 @@ export class AddBooksGoogleComponent implements OnInit {
   isLoading = false;
   minLengthTerm = 3;
   errorMsg: string;
+  submitClicked = false;
 
 
   constructor(private bookService: BookService) { }
@@ -70,6 +71,7 @@ export class AddBooksGoogleComponent implements OnInit {
     searchedBook.volumeInfo.authors = book.volumeInfo.authors;
 
     console.log(searchedBook);
+    this.submitClicked = true;
 
    }
 

@@ -17,6 +17,9 @@ import { HttpClientModule } from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { AddBooksGoogleComponent } from './add-books-google/add-books-google.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { BookCardComponent } from './book-card/book-card.component';
+import {MatCardModule} from '@angular/material/card';
+
 
 
 
@@ -26,7 +29,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     AppComponent,
     AddBooksComponent,
     ViewBooksComponent,
-    AddBooksGoogleComponent
+    AddBooksGoogleComponent,
+    BookCardComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +46,8 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
     HttpClientModule,
     MatSnackBarModule,
     ReactiveFormsModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatCardModule
   ],
   providers: [],
   bootstrap: [AppComponent]
