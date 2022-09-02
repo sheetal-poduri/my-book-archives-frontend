@@ -63,24 +63,24 @@ export class AddBooksGoogleComponent implements OnInit {
     newBook.kind = book.kind;
     newBook.saleInfo = book.saleInfo;
     newBook.searchInfo = book.searchInfo;
-    newBook.volumeInfo.title = book.volumeInfo.title;
-    newBook.volumeInfo.publisher = book.volumeInfo.publisher;
-    newBook.volumeInfo.language = book.volumeInfo.language;
+    newBook.title = book.volumeInfo.title;
+    newBook.publisher = book.volumeInfo.publisher;
+    newBook.language = book.volumeInfo.language;
     //newBook.volumeInfo.imageLinks = book.volumeInfo.imageLinks;
-    newBook.volumeInfo.description = book.volumeInfo.description;
-    newBook.volumeInfo.categories = book.volumeInfo.categories;
-    newBook.volumeInfo.authors = book.volumeInfo.authors;
-    newBook.volumeInfo.imageLinks.thumbnail = book.volumeInfo.imageLinks.thumbnail;
-    newBook.volumeInfo.imageLinks.smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
+    newBook.description = book.volumeInfo.description;
+    newBook.categories = book.volumeInfo.categories;
+    newBook.authors = book.volumeInfo.authors;
+    newBook.thumbnail = book.volumeInfo.imageLinks.thumbnail;
+    newBook.smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
 
-    console.log(newBook);
+    //console.log(newBook);
     this.searchedBook = newBook;
     this.submitClicked = true;
 
    }
 
 
-   getOptionText(option: BookItemGoogleResponse) : string {
+   getOptionText(option: any) : string {
     return option.volumeInfo.title;
    }
 

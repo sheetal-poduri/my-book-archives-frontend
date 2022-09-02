@@ -30,6 +30,7 @@ export class BookService {
   }  
 
   public addGoogleApiBook(book: BookItemGoogleResponse) : Observable<any> {
+    console.log(book)
     return this.http.post("http://localhost:8081/books/saveGoogleApiBook", book);
   }
 
