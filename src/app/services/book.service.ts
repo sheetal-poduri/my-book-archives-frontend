@@ -19,9 +19,9 @@ export class BookService {
 
   constructor( private http: HttpClient ) { }
 
-  public getAllBooks() : Observable<Book[]> {
+  public getAllBooks() : Observable<BookItemGoogleResponse[]> {
     //console.log(this.bookList);
-    return this.http.get<Book[]>("http://localhost:8081/books/getAll");
+    return this.http.get<BookItemGoogleResponse[]>("http://localhost:8081/books/getAll");
   }
 
   public addBook(book: Book): Observable<any> {

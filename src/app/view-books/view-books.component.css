@@ -1,8 +1,10 @@
-table {
-    width: 50%;
-  }
-  
-  .mat-form-field {
-    font-size: 14px;
-    width: 50%;
-  }
+.content {
+  padding: 16px;
+}
+
+.card-data {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

@@ -8,6 +8,9 @@
 }
 
 mat-card img{
-    width: unset;/* Here you can use wherever you want to specify the width and also the height of the <img>*/
-    margin: unset;
+    width: unset;
+    margin: unset; 
+
   }
+
+  
