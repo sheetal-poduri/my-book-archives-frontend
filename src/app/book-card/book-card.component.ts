@@ -11,6 +11,7 @@ import { BookService } from '../services/book.service';
 export class BookCardComponent implements OnInit {
 
   @Input() book: BookItemGoogleResponse;
+  showShortDesciption = true
   //title: string = '';
 
   constructor(private bookService: BookService, private snackBar: MatSnackBar) { }
@@ -20,12 +21,16 @@ export class BookCardComponent implements OnInit {
     //this.title = this.book.
   }
 
-  onAdd() {
+  public onAdd() {
     this.bookService.addGoogleApiBook(this.book).subscribe(book => 
       this.bookService.bookList.push(book));
 
     this.openSnackBar(this.book.title + " was added to your library!");
 
+  }
+
+  public alterDescriptionText() {
+     this.showShortDesciption = !this.showShortDesciption
   }
 
   private openSnackBar(message: string) {

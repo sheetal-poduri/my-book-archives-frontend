@@ -8,9 +8,17 @@
 }
 
 mat-card img{
-    width: unset;
-    margin: unset; 
-
+    /* width: unset;
+    margin: unset;  */
+    width:  150px;
+    height: 200px;
+    object-fit: cover;
   }
+
+  .show-less {
+    height: 4rem;
+    overflow: hidden;
+    padding: 1rem;
+}
 
   

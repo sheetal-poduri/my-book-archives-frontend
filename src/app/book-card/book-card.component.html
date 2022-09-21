@@ -4,9 +4,14 @@
       <mat-card-title>{{book.title}}</mat-card-title>
       <mat-card-subtitle>{{book.authors}}</mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image [src]="book.smallThumbnail" alt="Photo of a Shiba Inu">
+    <img mat-card-image [src]="book.smallThumbnail">
     <mat-card-content>
-      <p>{{book.description}}</p>
+      <div [ngClass]="{'show-less': showShortDesciption}">
+        <p>{{book.description}}</p>
+      </div>
+      <button mat-button (click)="alterDescriptionText()">
+        {{ showShortDesciption ? 'SEE MORE': 'SEE LESS' }}
+      </button>
     </mat-card-content>
     <mat-card-actions>
       <button mat-button (click)="onAdd()">ADD</button>
