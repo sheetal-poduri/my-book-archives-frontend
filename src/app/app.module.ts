@@ -19,6 +19,8 @@ import { AddBooksGoogleComponent } from './add-books-google/add-books-google.com
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { BookCardComponent } from './book-card/book-card.component';
 import {MatCardModule} from '@angular/material/card';
+import { HomeComponent } from './home/home.component';
+import { BookDetailsComponent } from './book-details/book-details.component';
 
 
 
@@ -30,7 +32,9 @@ import {MatCardModule} from '@angular/material/card';
     AddBooksComponent,
     ViewBooksComponent,
     AddBooksGoogleComponent,
-    BookCardComponent
+    BookCardComponent,
+    HomeComponent,
+    BookDetailsComponent
   ],
   imports: [
     BrowserModule,

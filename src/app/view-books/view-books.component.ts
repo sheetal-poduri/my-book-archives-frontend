@@ -24,6 +24,7 @@ export class ViewBooksComponent implements OnInit {
 
     this.bookService.getAllBooks().subscribe(data => {
       this.collectionBooks = data;
+      this.bookService.bookList = data;
       //this.dataSource = new MatTableDataSource(this.bookList);
 
     });
