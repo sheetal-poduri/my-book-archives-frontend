@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Book } from '../models/book.model';
 import { HttpClient, JsonpClientBackend} from '@angular/common/http';
-import { catchError, Observable } from 'rxjs';
+import { catchError, Observable, of } from 'rxjs';
 import { BookGoogleResponse } from '../models/book-google-response.model';
 import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
 
@@ -10,14 +10,9 @@ import { BookItemGoogleResponse } from '../models/book-item-google-response.mode
 })
 export class BookService {
 
-  bookList: Book[] = [
-    {title: 'sample1', author: 'hi1', genre: 'hi2', review: 'hi3'},
-    {title: 'sample2', author: 'hi1', genre: 'hi2', review: 'hi3'},
-    {title: 'sample3', author: 'hi1', genre: 'hi2', review: 'hi3'},
-    {title: 'sample4', author: 'hi1', genre: 'hi2', review: 'hi3'}
-  ];
+  bookList: BookItemGoogleResponse[] = [];
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient ) {}
 
   public getAllBooks() : Observable<BookItemGoogleResponse[]> {
     //console.log(this.bookList);
@@ -39,6 +34,11 @@ export class BookService {
     const authKey = '&key=AIzaSyBMWlYuZiPC98s9jnAsuwihvHH77mw0Ciw';
     return this.http.get<BookGoogleResponse>(googleUrl + title + authKey);
 
+  }
+
+  public getBook(title: string): Observable<BookItemGoogleResponse> {
+    const book = this.bookList.find(h => h.title === title)!;
+    return of(book);
   }
 
   public generateBookID() : number {

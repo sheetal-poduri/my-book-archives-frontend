@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
 import { BookService } from '../services/book.service';
+
 
 @Component({
   selector: 'app-book-card',
@@ -14,7 +16,13 @@ export class BookCardComponent implements OnInit {
   showShortDesciption = true
   //title: string = '';
 
-  constructor(private bookService: BookService, private snackBar: MatSnackBar) { }
+  constructor(
+    
+    private bookService: BookService, 
+    private snackBar: MatSnackBar, 
+    public router: Router,  
+    
+  ) { }
 
   ngOnInit(): void {
 
