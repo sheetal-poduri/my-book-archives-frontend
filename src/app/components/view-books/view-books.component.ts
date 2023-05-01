@@ -2,10 +2,10 @@ import { JsonpClientBackend } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
-import { BookGoogleResponse } from '../models/book-google-response.model';
-import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
-import { Book } from '../models/book.model';
-import { BookService } from '../services/book.service';
+import { BookGoogleResponse } from '../../models/book-google-response.model';
+import { BookItemGoogleResponse } from '../../models/book-item-google-response.model';
+import { Book } from '../../models/book.model';
+import { BookService } from '../../services/book.service';
 @Component({
   selector: 'app-view-books',
   templateUrl: './view-books.component.html',
