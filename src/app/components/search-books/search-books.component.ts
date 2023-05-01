@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   Observable,
   startWith,
@@ -33,7 +34,7 @@ export class SearchBooksComponent implements OnInit {
   submitClicked = false;
   searchedBook: BookItemGoogleResponse;
 
-  constructor(private bookService: BookService) {}
+  constructor(private bookService: BookService, private router: Router) {}
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -87,6 +88,7 @@ export class SearchBooksComponent implements OnInit {
     //console.log(newBook);
     this.searchedBook = newBook;
     this.submitClicked = true;
+    this.router.navigate(['/detail', newBook.id]);
   }
 
   getOptionText(option: any): string {
