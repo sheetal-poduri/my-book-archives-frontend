@@ -1,17 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { Observable, startWith, map, filter, debounceTime, distinctUntilChanged, finalize, switchMap, tap, catchError, of } from 'rxjs';
-import { BookItemGoogleResponse } from '../models/book-item-google-response.model';
-import { Book } from '../models/book.model';
-import { BookService } from '../services/book.service';
+import {
+  Observable,
+  startWith,
+  map,
+  filter,
+  debounceTime,
+  distinctUntilChanged,
+  finalize,
+  switchMap,
+  tap,
+  catchError,
+  of,
+} from 'rxjs';
+import { BookItemGoogleResponse } from '../../models/book-item-google-response.model';
+import { Book } from '../../models/book.model';
+import { BookService } from '../../services/book.service';
 
 @Component({
-  selector: 'app-add-books-google',
-  templateUrl: './add-books-google.component.html',
-  styleUrls: ['./add-books-google.component.css']
+  selector: 'app-search-books',
+  templateUrl: './search-books.component.html',
+  styleUrls: ['./search-books.component.css'],
 })
-export class AddBooksGoogleComponent implements OnInit {
-
+export class SearchBooksComponent implements OnInit {
   public title: string = '';
   myControl = new FormControl('');
   options: string[] = [];
@@ -22,39 +33,39 @@ export class AddBooksGoogleComponent implements OnInit {
   submitClicked = false;
   searchedBook: BookItemGoogleResponse;
 
-
-  constructor(private bookService: BookService) { }
+  constructor(private bookService: BookService) {}
 
   ngOnInit() {
-
-    this.filteredOptions = this.myControl.valueChanges
-    .pipe(
+    this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(''),
       debounceTime(400),
       distinctUntilChanged(),
-      switchMap(val => {
-        return this.filter(val || '')
-      })       
+      switchMap((val) => {
+        return this.filter(val || '');
+      })
     );
   }
-
 
   filter(val: string): Observable<any[]> {
     //const filterValue = val.toLowerCase();
     //this.filteredOptions = [];
     // call the service which makes the http-request
-    return this.bookService.getBooksByTitleGoogleAPI(val)
-     .pipe(
-       map(response => response.items.filter(option => {
-      
-         return option.volumeInfo.title.toLowerCase().indexOf(val.toString().toLowerCase()) === 0
-       }))
-       //,catchError(err => of('error', err))
-     )
-   }  
+    return this.bookService.getBooksByTitleGoogleAPI(val).pipe(
+      map((response) =>
+        response.items.filter((option) => {
+          return (
+            option.volumeInfo.title
+              .toLowerCase()
+              .indexOf(val.toString().toLowerCase()) === 0
+          );
+        })
+      )
+      //,catchError(err => of('error', err))
+    );
+  }
 
-   viewBook(book) {
-    const newBook = new BookItemGoogleResponse;
+  viewBook(book) {
+    const newBook = new BookItemGoogleResponse();
     //console.log(book);
 
     newBook.accessInfo = book.accessInfo;
@@ -76,14 +87,9 @@ export class AddBooksGoogleComponent implements OnInit {
     //console.log(newBook);
     this.searchedBook = newBook;
     this.submitClicked = true;
+  }
 
-   }
-
-
-   getOptionText(option: any) : string {
+  getOptionText(option: any): string {
     return option.volumeInfo.title;
-   }
-
+  }
 }
-
-
