@@ -19,6 +19,9 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { MatCardModule } from '@angular/material/card';
 import { HomeComponent } from './components/home/home.component';
+import { MatIconModule } from '@angular/material/icon';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { BookDetailComponent } from './components/book-detail/book-detail.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +30,7 @@ import { HomeComponent } from './components/home/home.component';
     SearchBooksComponent,
     BookCardComponent,
     HomeComponent,
+    BookDetailComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +48,8 @@ import { HomeComponent } from './components/home/home.component';
     ReactiveFormsModule,
     MatAutocompleteModule,
     MatCardModule,
+    MatIconModule,
+    MatToolbarModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
