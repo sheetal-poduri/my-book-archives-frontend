@@ -41,15 +41,11 @@ export class SearchBooksComponent implements OnInit {
       startWith(''),
       debounceTime(400),
       distinctUntilChanged(),
-      switchMap((val) => {
-        return this.filter(val || '');
-      })
+      switchMap((val) => (val.length >= 2 ? this.filter(val) : []))
     );
   }
 
   filter(val: string): Observable<any[]> {
-    //const filterValue = val.toLowerCase();
-    //this.filteredOptions = [];
     // call the service which makes the http-request
     return this.bookService.getBooksByTitleGoogleAPI(val).pipe(
       map((response) =>
@@ -66,29 +62,7 @@ export class SearchBooksComponent implements OnInit {
   }
 
   viewBook(book) {
-    const newBook = new BookItemGoogleResponse();
-    //console.log(book);
-
-    newBook.accessInfo = book.accessInfo;
-    newBook.etag = book.etag;
-    newBook.id = book.id;
-    newBook.kind = book.kind;
-    newBook.saleInfo = book.saleInfo;
-    newBook.searchInfo = book.searchInfo;
-    newBook.title = book.volumeInfo.title;
-    newBook.publisher = book.volumeInfo.publisher;
-    newBook.language = book.volumeInfo.language;
-    //newBook.volumeInfo.imageLinks = book.volumeInfo.imageLinks;
-    newBook.description = book.volumeInfo.description;
-    newBook.categories = book.volumeInfo.categories;
-    newBook.authors = book.volumeInfo.authors;
-    newBook.thumbnail = book.volumeInfo.imageLinks.thumbnail;
-    newBook.smallThumbnail = book.volumeInfo.imageLinks.smallThumbnail;
-
-    //console.log(newBook);
-    this.searchedBook = newBook;
-    this.submitClicked = true;
-    this.router.navigate(['/detail', newBook.id]);
+    this.router.navigate(['/detail', book.id]);
   }
 
   getOptionText(option: any): string {
