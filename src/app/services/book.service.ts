@@ -56,7 +56,7 @@ export class BookService {
 
   // check if you have already added this book to your collection
   // need to fix this
-  public checkIfBookExistsInCollection(id: string) {
+  public setBookExistsInCollection(id: string) {
     this.findBookByID(id).subscribe((book) => {
       if (book != undefined) {
         this.bookExistsinCollection = true;
@@ -64,5 +64,9 @@ export class BookService {
         this.bookExistsinCollection = false;
       }
     });
+  }
+
+  public getBookExistsInCollection(): boolean {
+    return this.bookExistsinCollection;
   }
 }

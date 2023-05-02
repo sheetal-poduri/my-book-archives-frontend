@@ -44,23 +44,24 @@ export class BookDetailComponent implements OnInit {
       this.book.volumeInfo = response.volumeInfo;
     });
 
-    console.log(this.id);
-    this.checkIfExists(this.id);
+    this.bookService.setBookExistsInCollection(this.id);
   }
 
   public onAdd() {
-    // this.bookService
-    //   .addGoogleApiBook(this.book)
-    //   .subscribe((book) => this.bookService.bookList.push(book));
-    // this.openSnackBar(this.book.title + ' was added to your library!');
+    this.bookService
+      .addGoogleApiBook(this.book)
+      .subscribe((book) => this.bookService.bookList.push(book));
+    this.openSnackBar(this.book.title + ' was added to your library!');
   }
+
+  public onRemove() {}
 
   private openSnackBar(message: string) {
     this.snackBar.open(message);
   }
 
   // need to fix this
-  checkIfExists(id: string) {
-    this.bookService.checkIfBookExistsInCollection(id);
+  checkIfExists(): boolean {
+    return this.bookService.getBookExistsInCollection();
   }
 }

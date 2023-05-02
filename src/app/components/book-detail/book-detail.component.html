@@ -5,11 +5,13 @@
     <mat-card-subtitle>{{ book.authors }}</mat-card-subtitle>
   </mat-card-header>
   <img mat-card-image [src]="book.smallThumbnail" />
-  <mat-card-content>
-    <p>{{ book.description }}</p>
-  </mat-card-content>
   <mat-card-actions>
-    <button *ngIf="doesExist" mat-button (click)="onAdd()">REMOVE</button>
-    <button *ngIf="!doesExist" mat-button (click)="onAdd()">ADD</button>
+    <button *ngIf="checkIfExists()" mat-button (click)="onRemove()">
+      REMOVE
+    </button>
+    <button *ngIf="!checkIfExists()" mat-button (click)="onAdd()">ADD</button>
   </mat-card-actions>
+  <mat-card-content>
+    <div [innerHTML]="book.description"></div>
+  </mat-card-content>
 </mat-card>
