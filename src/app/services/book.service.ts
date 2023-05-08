@@ -12,7 +12,11 @@ export class BookService {
   bookList: BookItemGoogleResponse[] = [];
   bookExistsinCollection: boolean;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getAllBooks().subscribe((data) => {
+      this.bookList = data;
+    });
+  }
 
   // get all the books in your collection
   public getAllBooks(): Observable<BookItemGoogleResponse[]> {
@@ -26,6 +30,14 @@ export class BookService {
     return this.http.post(
       'http://localhost:8081/books/saveGoogleApiBook',
       book
+    );
+  }
+
+  // remove a book from your collection
+  public removeGoogleApiBook(title: string): Observable<any> {
+    console.log('removing book - ' + title);
+    return this.http.delete(
+      'http://localhost:8081/books/deleteBookByTitle?title=' + title
     );
   }
 
@@ -49,24 +61,18 @@ export class BookService {
   }
 
   // search your collection by id
-  public findBookByID(id: string): Observable<BookItemGoogleResponse> {
+  public findBookByID(id: string): BookItemGoogleResponse {
     const book = this.bookList.find((h) => h.id === id)!;
-    return of(book);
+    return book;
   }
 
   // check if you have already added this book to your collection
   // need to fix this
-  public setBookExistsInCollection(id: string) {
-    this.findBookByID(id).subscribe((book) => {
-      if (book != undefined) {
-        this.bookExistsinCollection = true;
-      } else {
-        this.bookExistsinCollection = false;
-      }
-    });
-  }
 
-  public getBookExistsInCollection(): boolean {
-    return this.bookExistsinCollection;
+  public getBookExistsInCollection(id: string): boolean {
+    if (this.findBookByID(id) != undefined) {
+      return true;
+    }
+    return false;
   }
 }

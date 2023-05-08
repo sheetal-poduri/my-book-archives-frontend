@@ -43,8 +43,6 @@ export class BookDetailComponent implements OnInit {
       this.book.title = response.volumeInfo.title;
       this.book.volumeInfo = response.volumeInfo;
     });
-
-    this.bookService.setBookExistsInCollection(this.id);
   }
 
   public onAdd() {
@@ -54,7 +52,12 @@ export class BookDetailComponent implements OnInit {
     this.openSnackBar(this.book.title + ' was added to your library!');
   }
 
-  public onRemove() {}
+  public onRemove() {
+    this.bookService
+      .removeGoogleApiBook(this.book.title)
+      .subscribe((res) => console.log(res));
+    this.openSnackBar(this.book.title + ' was removed from your library!');
+  }
 
   private openSnackBar(message: string) {
     this.snackBar.open(message);
@@ -62,6 +65,6 @@ export class BookDetailComponent implements OnInit {
 
   // need to fix this
   checkIfExists(): boolean {
-    return this.bookService.getBookExistsInCollection();
+    return this.bookService.getBookExistsInCollection(this.book.id);
   }
 }
