@@ -18,7 +18,6 @@ import { SearchBooksComponent } from './components/search-books/search-books.com
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { BookCardComponent } from './components/book-card/book-card.component';
 import { MatCardModule } from '@angular/material/card';
-import { HomeComponent } from './components/home/home.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
@@ -29,7 +28,6 @@ import { BookDetailComponent } from './components/book-detail/book-detail.compon
     ViewBooksComponent,
     SearchBooksComponent,
     BookCardComponent,
-    HomeComponent,
     BookDetailComponent,
   ],
   imports: [

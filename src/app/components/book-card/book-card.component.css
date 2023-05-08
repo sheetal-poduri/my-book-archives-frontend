@@ -1,25 +1,24 @@
 .example-card {
-    max-width: 400px;
-    cursor: pointer;
-  }
-  
+  max-width: 400px;
+  cursor: pointer;
+}
+
 .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
+  background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
+  background-size: cover;
 }
 
-mat-card img{
-    /* width: unset;
+mat-card img {
+  /* width: unset;
     margin: unset;  */
-    width:  150px;
-    height: 200px;
-    object-fit: cover;
-  }
-
-  .show-less {
-    height: 4rem;
-    overflow: hidden;
-    padding: 1rem;
+  width: 150px;
+  height: 200px;
+  object-fit: cover;
+  margin-left: 10px;
 }
 
-  
+.show-less {
+  height: 4rem;
+  overflow: hidden;
+  padding: 1rem;
+}

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { BookDetailComponent } from './components/book-detail/book-detail.component';
-import { HomeComponent } from './components/home/home.component';
+import { ViewBooksComponent } from './components/view-books/view-books.component';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: ViewBooksComponent },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'detail/:id', component: BookDetailComponent },
 ];
