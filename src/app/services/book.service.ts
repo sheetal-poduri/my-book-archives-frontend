@@ -67,7 +67,7 @@ export class BookService {
   }
 
   // check if you have already added this book to your collection
-  // need to fix this
+  // need to fix thisss
 
   public getBookExistsInCollection(id: string): boolean {
     if (this.findBookByID(id) != undefined) {
